@@ -3,6 +3,7 @@
 #endif
 
 #include <stdio.h>
+
 #include "ansicolors.h"
 
 #ifdef _WIN32
@@ -12,49 +13,34 @@
 #endif
 
 static HANDLE stdoutHandle;
-static DWORD outModeInit;
+static DWORD  outModeInit;
 
-void setupConsole(void)
-{
-    DWORD outMode = 0;
-    stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+void setupConsole(void) {
+  DWORD outMode = 0;
+  stdoutHandle  = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    if (stdoutHandle == INVALID_HANDLE_VALUE)
-    {
-        exit(GetLastError());
-    }
+  if (stdoutHandle == INVALID_HANDLE_VALUE) exit(GetLastError());
 
-    if (!GetConsoleMode(stdoutHandle, &outMode))
-    {
-        exit(GetLastError());
-    }
+  if (!GetConsoleMode(stdoutHandle, &outMode)) exit(GetLastError());
 
-    outModeInit = outMode;
+  outModeInit = outMode;
 
-    // Enable ANSI escape codes
-    outMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+  // Enable ANSI escape codes
+  outMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 
-    if (!SetConsoleMode(stdoutHandle, outMode))
-    {
-        exit(GetLastError());
-    }
+  if (!SetConsoleMode(stdoutHandle, outMode)) exit(GetLastError());
 }
 
-void restoreConsole(void)
-{
-    printf(RESET_TEXT);
+void restoreConsole(void) {
+  printf(RESET_TEXT);
 
-    // Reset console mode
-    if (!SetConsoleMode(stdoutHandle, outModeInit))
-    {
-        exit(GetLastError());
-    }
+  // Reset console mode
+  if (!SetConsoleMode(stdoutHandle, outModeInit)) exit(GetLastError());
 }
 #else
 void setupConsole(void) {}
 
-void restoreConsole(void)
-{
-    printf(RESET_TEXT);
+void restoreConsole(void) {
+  printf(RESET_TEXT);
 }
 #endif

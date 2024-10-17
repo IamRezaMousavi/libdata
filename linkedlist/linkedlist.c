@@ -1,12 +1,12 @@
-#include <stdlib.h>
-
 #include "linkedlist.h"
+
+#include <stdlib.h>
 
 GList *g_list_alloc(void *data) {
   GList *new_node = (GList *)malloc(sizeof(GList));
-  new_node->data = data;
-  new_node->prev = NULL;
-  new_node->next = NULL;
+  new_node->data  = data;
+  new_node->prev  = NULL;
+  new_node->next  = NULL;
   return new_node;
 }
 
@@ -19,7 +19,7 @@ GList *g_list_append(GList *list, void *data) {
   while (last->next != NULL)
 	last = last->next;
 
-  last->next = new_node;
+  last->next     = new_node;
   new_node->prev = last;
 
   return list;

@@ -5,7 +5,7 @@
 #include "linkedlist.h"
 
 typedef struct Value {
-  int id;
+  int  id;
   char name[10];
 } Value;
 
@@ -44,15 +44,15 @@ int main() {
   list = NULL;
 
   Value *v1 = (Value *)malloc(sizeof(Value));
-  v1->id = 10;
+  v1->id    = 10;
   strcpy(v1->name, "Alice");
 
   Value *v2 = (Value *)malloc(sizeof(Value));
-  v2->id = 10;
+  v2->id    = 10;
   strcpy(v2->name, "Bob");
 
   Value *v3 = (Value *)malloc(sizeof(Value));
-  v3->id = 10;
+  v3->id    = 10;
   strcpy(v3->name, "Charlie");
 
   list = g_list_append(list, v1);
