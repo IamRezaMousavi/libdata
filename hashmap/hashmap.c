@@ -1,19 +1,8 @@
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define TABLE_SIZE 101
-
-typedef struct Node {
-  char *key;
-  char *value;
-  struct Node *next;
-} Node;
-
-typedef struct HashTable {
-  Node *buckets[TABLE_SIZE];
-} HashTable;
+#include "hashmap.h"
 
 // MurmurHash3
 uint32_t murmurhash(const char *key, uint32_t len, uint32_t seed) {
@@ -125,32 +114,4 @@ void free_table(HashTable *table) {
 	}
   }
   free(table);
-}
-
-void print_key_value(const char *key, const char *value) {
-  printf("Key: %s, Value: %s\n", key, value);
-}
-
-int main() {
-  HashTable *table = create_table();
-
-  set(table, "name", "reza");
-  set(table, "age", "24");
-  set(table, "city", "tehran");
-
-  printf("name:   %s\n", get(table, "name"));
-  printf("age:    %s\n", get(table, "age"));
-  printf("city:   %s\n", get(table, "city"));
-  printf("home:   %s\n", get(table, "home"));
-
-  printf("=============\n");
-
-  foreach (table, print_key_value)
-	;
-
-  printf("=============\n");
-
-  free_table(table);
-
-  return 0;
 }
