@@ -1,0 +1,42 @@
+---
+Language:        Cpp
+BasedOnStyle:  LLVM
+AlignArrayOfStructures: Right
+AlignEscapedNewlines: Left
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BitFieldColonSpacing: Before
+BraceWrapping:
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+BreakAfterJavaFieldAnnotations: true
+BreakBeforeBinaryOperators: All
+ColumnLimit:     100
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+IndentCaseBlocks: true
+IndentCaseLabels: true
+IndentExternBlock: NoIndent
+IndentGotoLabels: false
+IndentPPDirectives: BeforeHash
+IndentWidth:     2
+JavaScriptQuotes: Double
+PackConstructorInitializers: NextLine
+QualifierAlignment: Left
+RemoveBracesLLVM: true
+SeparateDefinitionBlocks: Always
+SpaceAfterTemplateKeyword: false
+SpaceBeforeCtorInitializerColon: false
+SpaceBeforeInheritanceColon: false
+SpaceBeforeSquareBrackets: false
+SpacesInContainerLiterals: false
+TabWidth:        4
+UseTab:          AlignWithSpaces
+...
