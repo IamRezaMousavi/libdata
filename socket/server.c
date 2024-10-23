@@ -1,4 +1,5 @@
 #include <arpa/inet.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +7,20 @@
 
 #define PORT 8080
 #define BUFFER_SIZE 1024
+
+void *handle_client(void *client_socket) {
+  int client_fd = *(int *)client_socket;
+  printf("Connected to a client.\n");
+
+  char buffer[BUFFER_SIZE] = {0};
+  int  valread             = recv(client_fd, buffer, BUFFER_SIZE, 0);
+  if (valread > 0) printf("Received message: %s\n", buffer);
+
+  send(client_fd, "Hello Client!", 14, 0);
+
+  close(client_fd);
+  printf("Connection closed.\n");
+}
 
 int main(int argc, const char *argv[]) {
   int                server_fd, client_fd;
@@ -36,22 +51,19 @@ int main(int argc, const char *argv[]) {
   printf("Server listening on port %d...\n", PORT);
 
   while (1) {
-	client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &addr_len);
-	if (client_fd == -1) {
+	int *client_fd = malloc(sizeof(int));
+	*client_fd     = accept(server_fd, (struct sockaddr *)&client_addr, &addr_len);
+	if (*client_fd < 0) {
 	  perror("accept failed");
 	  exit(EXIT_FAILURE);
 	}
 
-	printf("Connected to a client.\n");
-
-	memset(buffer, 0, BUFFER_SIZE);
-	int valread = recv(client_fd, buffer, BUFFER_SIZE, 0);
-	if (valread > 0) printf("Received message: %s\n", buffer);
-
-	send(client_fd, "Hello Client!", 14, 0);
-
-	close(client_fd);
-	printf("Connection closed.\n");
+	pthread_t thread_id;
+	if (pthread_create(&thread_id, NULL, handle_client, (void *)client_fd) != 0) {
+	  perror("pthread_create failed");
+	  close(*client_fd);
+	}
+	pthread_detach(thread_id);
   }
 
   close(server_fd);

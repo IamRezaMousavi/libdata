@@ -1,2 +1,2 @@
-# hashmap
+# Algorithm in c
 
