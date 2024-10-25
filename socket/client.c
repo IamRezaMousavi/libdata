@@ -37,8 +37,8 @@ int main(int argc, const char *argv[]) {
   printf("Message sent to server: %s\n", message);
 
   memset(message, 0, BUFFER_SIZE);
-  int valread = recv(sock_fd, message, BUFFER_SIZE, 0);
-  if (valread > 0) printf("Received message: %s\n", message);
+  int recbytes = recv(sock_fd, message, BUFFER_SIZE, 0);
+  if (recbytes > 0) printf("Received message [%d bytes]: %s\n", recbytes, message);
 
   close(sock_fd);
 

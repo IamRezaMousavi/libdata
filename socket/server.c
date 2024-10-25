@@ -9,17 +9,18 @@
 #define BUFFER_SIZE 1024
 
 void *handle_client(void *client_socket) {
-  int client_fd = *(int *)client_socket;
-  printf("Connected to a client.\n");
+  int *client_fd = (int *)client_socket;
+  printf("[%d] Connected a client.\n", *client_fd);
 
   char buffer[BUFFER_SIZE] = {0};
-  int  valread             = recv(client_fd, buffer, BUFFER_SIZE, 0);
-  if (valread > 0) printf("Received message: %s\n", buffer);
+  int  recbytes            = recv(*client_fd, buffer, BUFFER_SIZE, 0);
+  if (recbytes > 0) printf("[%d] Received message [%d bytes]: %s\n", *client_fd, recbytes, buffer);
 
-  send(client_fd, "Hello Client!", 14, 0);
+  send(*client_fd, "Hello Client!", 14, 0);
 
-  close(client_fd);
-  printf("Connection closed.\n");
+  close(*client_fd);
+  printf("[%d] Connection closed.\n", *client_fd);
+  free(client_fd);
 }
 
 int main(int argc, const char *argv[]) {
@@ -30,7 +31,7 @@ int main(int argc, const char *argv[]) {
 
   server_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (server_fd < 0) {
-	perror("socket failed");
+	perror("[server] socket failed");
 	exit(EXIT_FAILURE);
   }
 
@@ -39,22 +40,22 @@ int main(int argc, const char *argv[]) {
   server_addr.sin_port        = htons(PORT);
 
   if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-	perror("bind failed");
+	perror("[server] bind failed");
 	exit(EXIT_FAILURE);
   }
 
   if (listen(server_fd, 3) < 0) {
-	perror("listen failed");
+	perror("[server] listen failed");
 	exit(EXIT_FAILURE);
   }
 
-  printf("Server listening on port %d...\n", PORT);
+  printf("[server] listening on port %d...\n", PORT);
 
   while (1) {
 	int *client_fd = malloc(sizeof(int));
 	*client_fd     = accept(server_fd, (struct sockaddr *)&client_addr, &addr_len);
 	if (*client_fd < 0) {
-	  perror("accept failed");
+	  perror("[server] accept failed");
 	  exit(EXIT_FAILURE);
 	}
 
@@ -62,6 +63,7 @@ int main(int argc, const char *argv[]) {
 	if (pthread_create(&thread_id, NULL, handle_client, (void *)client_fd) != 0) {
 	  perror("pthread_create failed");
 	  close(*client_fd);
+	  free(client_fd);
 	}
 	pthread_detach(thread_id);
   }
