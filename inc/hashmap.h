@@ -4,13 +4,13 @@
 #define TABLE_SIZE 101
 
 typedef struct Node {
-  char        *key;
-  char        *value;
-  struct Node *next;
+    char        *key;
+    char        *value;
+    struct Node *next;
 } Node;
 
 typedef struct HashTable {
-  Node *buckets[TABLE_SIZE];
+    Node *buckets[TABLE_SIZE];
 } HashTable;
 
 HashTable *create_table();

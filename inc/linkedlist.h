@@ -2,9 +2,9 @@
 #define __LINKEDLIST_H__
 
 typedef struct GList {
-  void         *data;
-  struct GList *prev;
-  struct GList *next;
+    void         *data;
+    struct GList *prev;
+    struct GList *next;
 } GList;
 
 GList *g_list_append(GList *list, void *data);
