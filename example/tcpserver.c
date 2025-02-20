@@ -22,6 +22,8 @@ void *handle_client(void *client_socket) {
     close(*client_fd);
     printf("[%d] Connection closed.\n", *client_fd);
     free(client_fd);
+
+    return NULL;
 }
 
 int main(int argc, const char *argv[]) {
