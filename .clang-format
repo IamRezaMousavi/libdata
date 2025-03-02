@@ -13,7 +13,7 @@ AlignConsecutiveShortCaseStatements:
   Enabled:         true
 AlignEscapedNewlines: Left
 AllowShortBlocksOnASingleLine: Empty
-AllowShortCaseLabelsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortLambdasOnASingleLine: Empty
