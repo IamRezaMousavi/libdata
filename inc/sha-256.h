@@ -1,6 +1,7 @@
 #ifndef __SHA_256_H__
 #define __SHA_256_H__
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -113,7 +114,7 @@ uint8_t *sha_256_close(struct Sha_256 *sha_256);
 
 void hash_to_string(char string[SIZE_OF_SHA_256_HASH_STRING], const uint8_t hash[SIZE_OF_SHA_256_HASH]);
 
-int hash_check(const char input[], const char output[]);
+bool hash_check(const char input[], const char output[]);
 
 #ifdef __cplusplus
 }

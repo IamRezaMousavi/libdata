@@ -5,7 +5,7 @@
 #include <string.h>
 
 // MurmurHash3
-uint32_t murmurhash(const char *key, uint32_t len, uint32_t seed) {
+static uint32_t murmurhash(const char *key, uint32_t len, uint32_t seed) {
     uint32_t c1 = 0xcc9e2d51;
     uint32_t c2 = 0x1b873593;
     uint32_t r1 = 15;
@@ -53,7 +53,7 @@ uint32_t murmurhash(const char *key, uint32_t len, uint32_t seed) {
     return hash;
 }
 
-Node *create_node(const char *key, const char *value) {
+static Node *create_node(const char *key, const char *value) {
     Node *new_node  = (Node *)malloc(sizeof(Node));
     new_node->key   = strdup(key);
     new_node->value = strdup(value);
@@ -61,14 +61,14 @@ Node *create_node(const char *key, const char *value) {
     return new_node;
 }
 
-HashTable *create_table() {
-    HashTable *table = (HashTable *)malloc(sizeof(HashTable));
+HashMap *hashmap_create() {
+    HashMap *table = (HashMap *)malloc(sizeof(HashMap));
     for (int i = 0; i < TABLE_SIZE; i++)
         table->buckets[i] = NULL;
     return table;
 }
 
-void set(HashTable *table, const char *key, const char *value) {
+void hashmap_set(HashMap *table, const char *key, const char *value) {
     uint32_t hash  = murmurhash(key, strlen(key), 0);
     int      index = hash % TABLE_SIZE;
 
@@ -82,7 +82,7 @@ void set(HashTable *table, const char *key, const char *value) {
     }
 }
 
-char *get(HashTable *table, const char *key) {
+char *hashmap_get(HashMap *table, const char *key) {
     uint32_t hash  = murmurhash(key, strlen(key), 0);
     int      index = hash % TABLE_SIZE;
 
@@ -95,7 +95,7 @@ char *get(HashTable *table, const char *key) {
     return NULL;
 }
 
-void foreach (HashTable *table, void (*callback)(const char *, const char *)) {
+void hashmap_foreach(HashMap *table, void (*callback)(const char *, const char *)) {
     for (int i = 0; i < TABLE_SIZE; i++) {
         Node *current = table->buckets[i];
         while (current != NULL) {
@@ -105,7 +105,7 @@ void foreach (HashTable *table, void (*callback)(const char *, const char *)) {
     }
 }
 
-void free_table(HashTable *table) {
+void hashmap_free(HashMap *table) {
     for (int i = 0; i < TABLE_SIZE; i++) {
         Node *current = table->buckets[i];
         while (current != NULL) {

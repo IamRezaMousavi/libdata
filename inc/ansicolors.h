@@ -24,7 +24,7 @@
 
 #define RESET_TEXT "\033[0m"
 
-void setupConsole(void);
-void restoreConsole(void);
+void ansi_setup(void);
+void ansi_restore(void);
 
 #endif /* __ANSICOLOR_H__ */

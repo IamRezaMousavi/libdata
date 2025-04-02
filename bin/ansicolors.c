@@ -3,7 +3,7 @@
 #include "ansicolors.h"
 
 int main(int argc, const char *argv[]) {
-    setupConsole();
+    ansi_setup();
 
     printf("Reset\n");
     printf(RED_TEXT "HI" RESET_TEXT "\n");
@@ -17,6 +17,6 @@ int main(int argc, const char *argv[]) {
     printf(UNDERLINE_GREEN_TEXT "HI" RESET_TEXT "\n");
     printf("Reset\n");
 
-    restoreConsole();
+    ansi_restore();
     return 0;
 }

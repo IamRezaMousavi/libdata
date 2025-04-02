@@ -17,6 +17,6 @@ void queue_push(Queue *queue, void *data);
 
 void *queue_pop(Queue *queue);
 
-void queue_destroy(Queue *queue);
+void queue_destroy(Queue *queue, void (*free_fn)(void *));
 
 #endif /* __QUEUE_H__ */

@@ -37,7 +37,7 @@ int main(int argc, const char *argv[]) {
     /* Default config */
     configuration config = {.run = 1, .version = 4, .name = "Bob", .email = "b@b.com"};
 
-    size_t ini_err = parse_ini("config.ini", handler, &config);
+    size_t ini_err = ini_parse("config.ini", handler, &config);
     if (ini_err < 0) {
         printf("Error: can't open config.ini\n");
         exit(EXIT_FAILURE);

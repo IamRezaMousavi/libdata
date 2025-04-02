@@ -220,16 +220,13 @@ void hash_to_string(char string[SIZE_OF_SHA_256_HASH_STRING], const uint8_t hash
         string += sprintf(string, "%02x", hash[i]);
 }
 
-int hash_check(const char input[], const char output[]) {
+bool hash_check(const char input[], const char output[]) {
     uint8_t hash[SIZE_OF_SHA_256_HASH];
     char    hash_string[SIZE_OF_SHA_256_HASH_STRING];
     calc_sha_256(hash, input, strlen(input));
     hash_to_string(hash_string, hash);
     if (strcmp(output, hash_string)) {
-        // FAILURE!
-        return 1;
-    } else {
-        // SUCCESS!
-        return 0;
+        return false;
     }
+    return true;
 }

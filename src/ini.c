@@ -88,7 +88,7 @@ size_t ini_parse_file(FILE *file, ini_handler handler, void *userdata) {
     return error;
 }
 
-size_t parse_ini(const char *filename, ini_handler handler, void *userdata) {
+size_t ini_parse(const char *filename, ini_handler handler, void *userdata) {
     FILE *file = fopen(filename, "r");
     if (!file)
         return -1;

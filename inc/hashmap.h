@@ -9,14 +9,14 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
-typedef struct HashTable {
+typedef struct HashMap {
     Node *buckets[TABLE_SIZE];
-} HashTable;
+} HashMap;
 
-HashTable *create_table();
-void       set(HashTable *table, const char *key, const char *value);
-char      *get(HashTable *table, const char *key);
-void foreach (HashTable *table, void (*callback)(const char *, const char *));
-void free_table(HashTable *table);
+HashMap *hashmap_create();
+void     hashmap_set(HashMap *table, const char *key, const char *value);
+char    *hashmap_get(HashMap *table, const char *key);
+void     hashmap_foreach(HashMap *table, void (*callback)(const char *, const char *));
+void     hashmap_free(HashMap *table);
 
 #endif /* __HASHMAP_H__ */

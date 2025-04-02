@@ -33,11 +33,14 @@ void *queue_pop(Queue *queue) {
     return data;
 }
 
-void queue_destroy(Queue *queue) {
-    while (queue->front != NULL) {
+void queue_destroy(Queue *queue, void (*free_fn)(void *)) {
+    while (queue->front != queue->rear) {
         Node *temp   = queue->front;
         queue->front = queue->front->next;
-        free(temp->data);
+        if (free_fn)
+            free_fn(temp->data);
         free(temp);
     }
+    free(queue->front);
+    queue->front = queue->rear = NULL;
 }

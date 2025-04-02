@@ -15,7 +15,7 @@
 static HANDLE stdoutHandle;
 static DWORD  outModeInit;
 
-void setupConsole(void) {
+void ansi_setup(void) {
     DWORD outMode = 0;
     stdoutHandle  = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -34,7 +34,7 @@ void setupConsole(void) {
         exit(GetLastError());
 }
 
-void restoreConsole(void) {
+void ansi_restore(void) {
     printf(RESET_TEXT);
 
     // Reset console mode
@@ -42,9 +42,9 @@ void restoreConsole(void) {
         exit(GetLastError());
 }
 #else
-void setupConsole(void) {}
+void ansi_setup(void) {}
 
-void restoreConsole(void) {
+void ansi_restore(void) {
     printf(RESET_TEXT);
 }
 #endif

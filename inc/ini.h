@@ -9,6 +9,6 @@
 
 typedef int (*ini_handler)(void *userdata, const char *section, const char *key, const char *value);
 
-size_t parse_ini(const char *filename, ini_handler handler, void *userdata);
+size_t ini_parse(const char *filename, ini_handler handler, void *userdata);
 
 #endif /* __INI_H__ */

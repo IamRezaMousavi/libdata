@@ -43,7 +43,7 @@ void cleanup() {
 
     for (int i = 0; i < NUM_WORKERS; i++) {
         pthread_join(workers[i], NULL);
-        queue_destroy(&worker_queues[i]);
+        queue_destroy(&worker_queues[i], free);
     }
 
     close(sockfd);
