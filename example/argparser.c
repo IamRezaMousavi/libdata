@@ -30,7 +30,8 @@ int main(int argc, const char *argv[]) {
     struct argparse argparse;
     argparse_init(&argparse, options);
     argparse_describe(
-        &argparse, "\nA brief description of what the program does and how it works.",
+        &argparse,
+        "\nA brief description of what the program does and how it works.",
         "\nAdditional description of the program after the description of the arguments."
     );
     argparse_parse(&argparse, argc, argv);

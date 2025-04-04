@@ -52,7 +52,10 @@ int main(int argc, const char *argv[]) {
         "version=%d\n"
         "name=%s\n"
         "email=%s\n",
-        config.run, config.version, config.name, config.email
+        config.run,
+        config.version,
+        config.name,
+        config.email
     );
 
     if (config.name)

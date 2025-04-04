@@ -1,5 +1,6 @@
 BasedOnStyle:  LLVM
 AlignAfterOpenBracket: BlockIndent
+AllowAllArgumentsOnNextLine: false
 AlignArrayOfStructures: Left
 AlignConsecutiveAssignments:
   Enabled:         true
@@ -16,9 +17,9 @@ AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Empty
-AllowShortLambdasOnASingleLine: Empty
-AlwaysBreakAfterReturnType: None
+AllowShortLambdasOnASingleLine: Inline
 AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
 BraceWrapping:
   SplitEmptyFunction: false
   SplitEmptyRecord: false
@@ -26,7 +27,7 @@ BraceWrapping:
 BreakAfterJavaFieldAnnotations: true
 BreakBeforeBinaryOperators: All
 ColumnLimit:     140
-IndentCaseBlocks: true
+IndentCaseBlocks: false
 IndentCaseLabels: true
 IndentExternBlock: NoIndent
 IndentGotoLabels: false
