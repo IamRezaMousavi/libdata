@@ -1,3 +1,9 @@
+/**
+ * This project uses the sha2 library.
+ * Original repository: https://github.com/amosnier/sha-2
+ * License: Unlicense (https://opensource.org/licenses/unlicense
+ */
+
 #ifndef __SHA_256_H__
 #define __SHA_256_H__
 

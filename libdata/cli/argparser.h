@@ -1,3 +1,9 @@
+/**
+ * This project uses the modified version of argparse library.
+ * Original repository: https://github.com/cofyc/argparse
+ * License: MIT
+ */
+
 #ifndef __ARGPARSER_H__
 #define __ARGPARSER_H__
 

@@ -107,6 +107,11 @@ void test_large_input() {
     // Create a 1MB buffer filled with 'a'
     const size_t size        = 1024 * 1024;
     char        *large_input = malloc(size);
+    if (!large_input) {
+        printf("Error to alloc large input\n");
+        return;
+    }
+
     memset(large_input, 'a', size);
 
     uint8_t hash[SIZE_OF_SHA_256_HASH];
