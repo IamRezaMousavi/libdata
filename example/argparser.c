@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "argparser.h"
+#include <libdata/cli/argparser.h>
 
 #define PERM_READ  (1 << 0)
 #define PERM_WRITE (1 << 1)

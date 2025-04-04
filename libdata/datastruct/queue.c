@@ -7,11 +7,15 @@ void queue_init(Queue *queue) {
     queue->rear  = NULL;
 }
 
+bool queue_isempty(Queue *queue) {
+    return queue->front == NULL;
+}
+
 void queue_push(Queue *queue, void *data) {
     Node *new_node = (Node *)malloc(sizeof(Node));
     new_node->data = data;
     new_node->next = NULL;
-    if (queue->rear == NULL) {
+    if (queue_isempty(queue)) {
         queue->front = queue->rear = new_node;
     } else {
         queue->rear->next = new_node;
@@ -20,9 +24,10 @@ void queue_push(Queue *queue, void *data) {
 }
 
 void *queue_pop(Queue *queue) {
-    if (queue->front == NULL) {
+    if (queue_isempty(queue)) {
         return NULL;
     }
+
     Node *temp   = queue->front;
     void *data   = temp->data;
     queue->front = queue->front->next;

@@ -8,7 +8,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "queue.h"
+#include <libdata/datastruct/queue.h>
 
 #define BUFFER_SIZE (1024 * 1024)
 #define NUM_WORKERS 8

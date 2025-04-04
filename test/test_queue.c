@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "queue.h"
+#include <libdata/datastruct/queue.h>
 
 void test_queue_init() {
     printf("test_queue_init...");

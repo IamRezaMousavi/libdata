@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ini.h"
+#include <libdata/fileparser/ini.h>
 
 typedef struct configuration {
     int run;

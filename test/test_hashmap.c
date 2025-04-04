@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "hashmap.h"
+#include <libdata/datastruct/hashmap.h>
 
 void print_key_value(const char *key, const char *value) {
     printf("Key: %s, Value: %s\n", key, value);

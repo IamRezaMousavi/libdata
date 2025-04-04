@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "timsort.h"
+#include <libdata/sort/timsort.h>
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 

@@ -1,6 +1,8 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#include <stdbool.h>
+
 typedef struct Node {
     void        *data;
     struct Node *next;
@@ -12,6 +14,8 @@ typedef struct {
 } Queue;
 
 void queue_init(Queue *queue);
+
+bool queue_isempty(Queue *queue);
 
 void queue_push(Queue *queue, void *data);
 

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sha-256.h"
+#include <libdata/hashed/sha-256.h>
 
 // Helper function to print hash as hex
 void print_hash(const uint8_t hash[SIZE_OF_SHA_256_HASH]) {

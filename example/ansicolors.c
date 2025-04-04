@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "ansicolors.h"
+#include <libdata/cli/ansicolors.h>
 
 int main(int argc, const char *argv[]) {
     ansi_setup();

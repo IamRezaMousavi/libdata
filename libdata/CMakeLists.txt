@@ -1,0 +1,15 @@
+file(
+    GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/*/*.c"
+)
+
+add_library(data STATIC ${SOURCES})
+
+target_include_directories(data PUBLIC ${CMAKE_SOURCE_DIR})
+
+install(TARGETS data DESTINATION lib)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/
+    DESTINATION include/${PROJECT_NAME}
+    FILES_MATCHING PATTERN "*.h"
+)
