@@ -1,3 +1,9 @@
+/**
+ * This project uses the modified version of inih library.
+ * Original repository: https://github.com/benhoyt/inih
+ * License: BSD
+ */
+
 #ifndef __INI_H__
 #define __INI_H__
 
